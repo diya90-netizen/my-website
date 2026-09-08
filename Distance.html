@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Far from University?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-card">
+    <h1>How Far from University?</h1>
+
+    <p>Formula: Distance = √(x² + y²)</p>
+
+    <label for="x">Enter x coordinate:</label><br>
+    <input type="number" id="x" placeholder="Enter x"><br>
+
+    <label for="y">Enter y coordinate:</label><br>
+    <input type="number" id="y" placeholder="Enter y"><br>
+
+    <button onclick="calculateDistance()">Calculate Distance</button>
+    <button onclick="getLocation()">Use My Location</button>
+
+    <p id="location" class="result"></p>
+    <p id="result" class="result"></p>
+
+    <button class="back-button" onclick="location.href='resume.html'">Back</button>
+</div>
+
+<script>
+function calculateDistance() {
+    let xValue = document.getElementById("x").value;
+    let yValue = document.getElementById("y").value;
+    let result = document.getElementById("result");
+
+    if (xValue === "" || yValue === "") {
+        result.innerHTML = "Please enter both x and y coordinates.";
+        return;
+    }
+
+    let x = Number(xValue);
+    let y = Number(yValue);
+
+    if (isNaN(x) || isNaN(y)) {
+        result.innerHTML = "Please enter valid numbers.";
+        return;
+    }
+
+    let distance = Math.sqrt((x * x) + (y * y));
+    result.innerHTML = "Distance = " + distance.toFixed(2);
+}
+
+function getLocation() {
+    let locationText = document.getElementById("location");
+
+    if (!navigator.geolocation) {
+        locationText.innerHTML = "Geolocation is not supported by this browser.";
+        return;
+    }
+
+    locationText.innerHTML = "Getting your location...";
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            document.getElementById("x").value = latitude;
+            document.getElementById("y").value = longitude;
+
+            locationText.innerHTML =
+                "Latitude: " + latitude.toFixed(6) + "<br>" +
+                "Longitude: " + longitude.toFixed(6);
+
+            calculateDistance();
+        },
+        function() {
+            locationText.innerHTML = "Unable to get your location.";
+        }
+    );
+}
+</script>
+
+</body>
+</html>

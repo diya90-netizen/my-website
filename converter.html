@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measurement Converter</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        
+        .container {
+            width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+        
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+        
+        .section {
+            margin-top: 20px;
+        }
+        
+        input {
+            width: 120px;
+            padding: 5px;
+        }
+        
+        button {
+            padding: 6px 10px;
+            margin-top: 5px;
+        }
+    </style>
+
+    <script>
+        function lengthConverter() {
+            let cm = document.getElementById("cm").value;
+            let inch = cm / 2.54;
+            document.getElementById("lengthResult").innerHTML =
+                cm + " cm = " + inch.toFixed(2) + " inches";
+        }
+
+        function heightConverter() {
+            let cm = document.getElementById("height").value;
+            let feet = cm / 30.48;
+            document.getElementById("heightResult").innerHTML =
+                cm + " cm = " + feet.toFixed(2) + " ft";
+        }
+
+        function temperatureConverter() {
+            let c = document.getElementById("temp").value;
+            let f = (c * 9 / 5) + 32;
+            document.getElementById("tempResult").innerHTML =
+                c + " °C = " + f.toFixed(2) + " °F";
+        }
+
+        function areaConverter() {
+            let sqm = document.getElementById("area").value;
+            let sqft = sqm * 10.764;
+            document.getElementById("areaResult").innerHTML =
+                sqm + " m² = " + sqft.toFixed(2) + " ft²";
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Measurement Converter</h1>
+
+        <div class="section">
+            <h3>Length Converter</h3>
+            <input type="number" id="cm" placeholder="Centimeters">
+            <button onclick="lengthConverter()">Convert</button>
+            <p id="lengthResult"></p>
+        </div>
+
+        <div class="section">
+            <h3>Height Converter</h3>
+            <input type="number" id="height" placeholder="Centimeters">
+            <button onclick="heightConverter()">Convert</button>
+            <p id="heightResult"></p>
+        </div>
+
+        <div class="section">
+            <h3>Temperature Converter</h3>
+            <input type="number" id="temp" placeholder="Celsius">
+            <button onclick="temperatureConverter()">Convert</button>
+            <p id="tempResult"></p>
+        </div>
+
+        <div class="section">
+            <h3>Area Converter</h3>
+            <input type="number" id="area" placeholder="Square Meter">
+            <button onclick="areaConverter()">Convert</button>
+            <p id="areaResult"></p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
